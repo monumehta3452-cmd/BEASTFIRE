@@ -1,0 +1,211 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reward Survey App</title>
+
+<style>
+body{
+font-family:Arial;
+margin:0;
+background:linear-gradient(45deg,#0f2027,#203a43,#2c5364);
+color:white;
+text-align:center;
+}
+
+.header{
+padding:18px;
+font-size:24px;
+background:#00000070;
+}
+
+.box{
+background:#ffffff20;
+margin:15px;
+padding:20px;
+border-radius:10px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:8px;
+font-size:16px;
+background:#00ffae;
+cursor:pointer;
+margin-top:10px;
+}
+
+input{
+padding:10px;
+border-radius:6px;
+border:none;
+width:80%;
+margin-top:10px;
+}
+
+#surveyBox{
+display:none;
+background:white;
+color:black;
+padding:10px;
+border-radius:10px;
+margin-top:15px;
+}
+
+.coin{
+font-size:40px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+💰 Survey Reward App
+</div>
+
+<div class="box">
+<h3>Your Coins</h3>
+<div class="coin" id="coins">0</div>
+</div>
+
+<div class="box">
+
+<h3>Survey Task</h3>
+
+<button onclick="startSurvey()">Start Survey</button>
+
+<div id="surveyBox">
+
+<br>
+
+<script src="https://trianglerockers.com/script_include.php?id=1881836"></script>
+
+<br><br>
+
+<button onclick="claimCoins()">Claim 50 Coins</button>
+
+</div>
+
+</div>
+
+<div class="box">
+
+<h3>Daily Bonus</h3>
+
+<button onclick="dailyBonus()">Claim 20 Coins</button>
+
+</div>
+
+<div class="box">
+
+<h3>Referral</h3>
+
+<p>Your Referral Code</p>
+
+<input id="refcode" readonly>
+
+<br>
+
+<button onclick="copyRef()">Copy Code</button>
+
+</div>
+
+<div class="box">
+
+<h3>Withdraw</h3>
+
+<p>Minimum 500 Coins</p>
+
+<input id="upi" placeholder="Enter UPI ID">
+
+<br>
+
+<button onclick="withdraw()">Withdraw Request</button>
+
+</div>
+
+<script>
+
+let coins = localStorage.getItem("coins");
+
+if(coins==null){
+coins=0;
+}
+
+document.getElementById("coins").innerText=coins;
+
+let ref="REF"+Math.floor(Math.random()*100000);
+
+document.getElementById("refcode").value=ref;
+
+function startSurvey(){
+
+document.getElementById("surveyBox").style.display="block";
+
+}
+
+function claimCoins(){
+
+coins=parseInt(coins)+50;
+
+localStorage.setItem("coins",coins);
+
+document.getElementById("coins").innerText=coins;
+
+alert("50 Coins Added");
+
+}
+
+function dailyBonus(){
+
+coins=parseInt(coins)+20;
+
+localStorage.setItem("coins",coins);
+
+document.getElementById("coins").innerText=coins;
+
+alert("Daily Bonus Added");
+
+}
+
+function copyRef(){
+
+let copyText=document.getElementById("refcode");
+
+copyText.select();
+
+document.execCommand("copy");
+
+alert("Referral Copied");
+
+}
+
+function withdraw(){
+
+let upi=document.getElementById("upi").value;
+
+if(coins<500){
+
+alert("Minimum 500 Coins Required");
+
+}else if(upi==""){
+
+alert("Enter UPI ID");
+
+}else{
+
+alert("Withdraw Request Sent");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
+```
